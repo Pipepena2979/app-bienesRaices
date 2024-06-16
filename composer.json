@@ -1,0 +1,23 @@
+{
+    "name": "dell/bienesraices",
+    "description": "Proyecto de Bienes Raices 2024",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Model\\": "models/",
+            "MVC\\": "./",
+            "Controllers\\": "controllers/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Andrés Felipe Peña Castro",
+            "email": "calamjr.3619@gmail.com"
+        }
+    ],
+    "require": {
+        "intervention/image": "2.7",
+        "phpmailer/phpmailer": "^6.9",
+        "vlucas/phpdotenv": "^5.6"
+    }
+}

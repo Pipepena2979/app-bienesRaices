@@ -164,21 +164,42 @@ class ActiveRecord {
     }
 
     public static function consultarSQL($query) {
-        //** CONSULTAR LA BASE DE DATOS */
+        // Verificar si la conexión está configurada
+        if (!isset(self::$db)) {
+            // Opcional: lanza una excepción o maneja el error de conexión aquí
+            // throw new Exception("No se ha configurado la conexión a la base de datos.");
+            // return [];
+            // Esto depende de cómo quieras manejar el error.
+            echo "No se ha configurado la conexión a la base de datos";
+            exit;
+        }
+    
+        // Consultar la base de datos
         $resultado = self::$db->query($query);
-
-        //** ITERAR LOS RESULTADOS */
+    
+        // Verificar si hubo un error en la consulta
+        if (!$resultado) {
+            // Opcional: manejar el error de consulta aquí
+            // echo "Error en la consulta: " . self::$db->error;
+            // return [];
+            // Esto depende de cómo quieras manejar el error.
+            echo "Error en la consulta: " . self::$db->error;
+            exit;
+        }
+    
+        // Iterar los resultados
         $array = [];
-        while($registro = $resultado->fetch_assoc()) {
+        while ($registro = $resultado->fetch_assoc()) {
             $array[] = static::crearObjeto($registro);
         }
-        
-        //** LIBERAR LA MEMORIA */
+    
+        // Liberar la memoria
         $resultado->free();
-
-        //** RETORNAR RESULTADO */
+    
+        // Retornar resultado
         return $array;
     }
+    
 
     protected static function crearObjeto($registro) {
         $objeto = new static;

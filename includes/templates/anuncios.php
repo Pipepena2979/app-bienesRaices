@@ -1,5 +1,7 @@
-<?php 
-    use App\Propiedad;
+<?php
+    use Model\Propiedad;
+    // require __DIR__ . '/../../vendor/autoload.php';
+
     if($_SERVER['SCRIPT_NAME'] === '/bienesraices/anuncios.php') {
         $propiedades = Propiedad::all();
     } else{
